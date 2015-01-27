@@ -1,3 +1,11 @@
+<div class="row col col-lg-12" style="margin-bottom:20px;margin-top:20px;">
+    
+<a href="https://www.facebook.com/bootsnipp"><i id="social" class="col-lg-offset-1 fa fa-play-circle-o fa-5x social-fb col-lg-2"></i></a>
+<a href="https://twitter.com/bootsnipp"><i id="social" class="col-lg-offset-1 fa fa-twitter-square fa-5x social-tw col-lg-2"></i></a>
+<a href="https://plus.google.com/+Bootsnipp-page"><i id="social" class="col-lg-offset-1 fa fa-google-plus-square fa-5x social-gp col-lg-2"></i></a>
+<a href="mailto:bootsnipp@gmail.com"><i id="social" class="col-lg-offset-1 fa fa-envelope-square fa-5x social-em col-lg-2"></i></a>
+
+</div>
 
 
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
@@ -81,21 +89,23 @@ function myFunction(passed) {
 
                 <div class="col col-lg-12">
 
-                <div class="container col-lg-12">
+    <div class="container col-lg-12">
 
     <div class="qa-message-list" id="wallmessages">
+
 <% @client.search("nyuentrepreneur", lang: "en").take(5).collect do |tweet| %>
-                    <div class="message-item" id="m<%= tweet.user.screen_name %>">
+
+                    <div class="message-item well" id="m<%= tweet.user.screen_name %>">
                         <div class="message-inner">
                             <div class="message-head clearfix">
-                                <div class="avatar pull-left"><a href="./index.php?qa=user&qa_1=admin"><img src="<%= tweet.user.profile_image_url %>" class="twitterimg"></a></div>
+                                <div class="avatar pull-left"><a href="./index.php?qa=user&qa_1=admin"><img src="<%= tweet.user.profile_image_url %>" class="twitterimg" style="padding-right:5px;"></a></div>
                                 <div class="user-detail">
                                     <h5 class="handle"><%= tweet.user.screen_name %></h5>
                                     <div class="post-meta">
                                         <div class="asker-meta">
                                             <span class="qa-message-what"></span>
                                             <span class="qa-message-when">
-                                                <span class="qa-message-when-data"><%= tweet.created_at.to_s.first(10).last(5) %></span>
+                                                <span class="qa-message-when-data"><%#= tweet.created_at.to_s.first(10).last(5) %></span>
                                             </span>
                                             
                                         </div>
@@ -103,152 +113,43 @@ function myFunction(passed) {
                                 </div>
                             </div>
                             <div class="qa-message-content"><%= tweet.text %></div>
-                    </div></div>
-                    <% end %>
-                </div>
-</div><style type="text/css">.message-item {
-margin-bottom: 25px;
-margin-left: 40px;
-position: relative;
-}
-.message-item .message-inner {
-background: #fff;
-border: 1px solid #ddd;
-border-radius: 3px;
-padding: 10px;
-position: relative;
-}
-.message-item .message-inner:before {
-border-right: 10px solid #ddd;
-border-style: solid;
-border-width: 10px;
-color: rgba(0,0,0,0);
-content: "";
-display: block;
-height: 0;
-position: absolute;
-left: -20px;
-top: 6px;
-width: 0;
-}
-.message-item .message-inner:after {
-border-right: 10px solid #fff;
-border-style: solid;
-border-width: 10px;
-color: rgba(0,0,0,0);
-content: "";
-display: block;
-height: 0;
-position: absolute;
-left: -18px;
-top: 6px;
-width: 0;
-}
-.message-item:before {
-background: #fff;
-border-radius: 2px;
-bottom: -30px;
-box-shadow: 0 0 3px rgba(0,0,0,0.2);
-content: "";
-height: 100%;
-left: -30px;
-position: absolute;
-width: 3px;
-}
-.message-item:after {
-background: #fff;
-border: 2px solid #ccc;
-border-radius: 50%;
-box-shadow: 0 0 5px rgba(0,0,0,0.1);
-content: "";
-height: 15px;
-left: -36px;
-position: absolute;
-top: 10px;
-width: 15px;
-}
-.clearfix:before, .clearfix:after {
-content: " ";
-display: table;
-}
-.message-item .message-head {
-border-bottom: 1px solid #eee;
-margin-bottom: 8px;
-padding-bottom: 8px;
-}
-.message-item .message-head .avatar {
-margin-right: 20px;
-}
-.message-item .message-head .user-detail {
-overflow: hidden;
-}
-.message-item .message-head .user-detail h5 {
-font-size: 16px;
-font-weight: bold;
-margin: 0;
-}
-.message-item .message-head .post-meta {
-float: left;
-padding: 0 15px 0 0;
-}
-.message-item .message-head .post-meta >div {
-color: #333;
-font-weight: bold;
-text-align: right;
-}
-.post-meta > div {
-color: #777;
-font-size: 12px;
-line-height: 22px;
-}
-.message-item .message-head .post-meta >div {
-color: #333;
-font-weight: bold;
-text-align: right;
-}
-.post-meta > div {
-color: #777;
-font-size: 12px;
-line-height: 22px;
-}
-.twitterimg {
- min-height: 40px;
- max-height: 40px;
-}</style>
-
-          
+                    </div>
+                    </div>
+<% end %>
 
 
-                    <!-- <h3>Newsletter Signup</h3>                 
-                    <%#= form_for @signup do |f| %>  
-                      <%# if @signup.errors.any? %>  
+    </div>
+</div>
+      
+
+
+                    <h3>Newsletter Signup</h3>                 
+                    <%= form_for @signup do |f| %>  
+                      <% if @signup.errors.any? %>  
                         <div class="error_messages">  
                           <h2>Form is invalid</h2>  
                           <ul>  
-                            <%# for message in @signup.errors.full_messages %>  
-                              <li><%#= message %></li>  
-                            <%# end %>  
+                            <% for message in @signup.errors.full_messages %>  
+                              <li><%= message %></li>  
+                            <% end %>  
                           </ul>  
                         </div>  
-                      <%# end %>   -->
+                      <% end %> 
                         
 
-                    <%#= f.text_field :email, :class => "col-lg-12" %>  <br />
+                    <%= f.text_field :email, :class => "col-lg-12" %>  <br />
                     <%#= f.hidden_field :siteid, :value => @site.id %>
-                    <%#= f.submit "Signup", :class => "btn btn-success btn-lg col-lg-12" %> 
+                    <%= f.submit "Signup", :class => "btn btn-success btn-lg col-lg-12" %> 
                     
-                    <%# end %>
+                    <% end %>
                 </div>
 
-                   <!-- <div class="col col-lg-12">
-                    <a class="twitter-timeline" href="https://twitter.com/search?q=nyuentrepreneur" data-widget-id="555242793044824064">Tweets about nyuentrepreneur</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                    </div> -->
-
+               
                 </div>
 
                 <div class="col col-lg-6">
-<!--                 <h3>What's happening in the eLab</h3>
- -->
+
+<!--                 <h3>What's happening in the eLab</h3>  -->
                     <% for event in @decoded_array.first(6) %>
 
 
