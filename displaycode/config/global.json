@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "LeslieDisplay": {
+            "applicationId": "HOIz6wy4mnaFLQ0JaUQn0u01OZInYGppGiuAztEI", 
+            "masterKey": "yqd0mNJ8U3bOMcsVzYaKF0YkXely9F8kuRenjqGm"
+        }, 
+        "_default": {
+            "link": "LeslieDisplay"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.3"
+    }
+}

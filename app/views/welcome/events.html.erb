@@ -1,0 +1,287 @@
+
+
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav col-lg-12">
+                    
+                    <% for employee in @staff %>
+                    <li data-toggle="modal" data-target="#<%= employee.firstname %>Modal" class="col col-lg-12">
+                        <img src="<%#= employee.image %>" class="col col-lg-12">
+                        <div id="<%= employee.firstname %>" class="col col-lg-12" style="color:white !important;height:70px;"><%= employee.firstname %></div>
+                    </li>
+                        <style>
+                        #<%= employee.firstname %>
+                        {
+                            height: 200px;
+                            background-image: url("<%= employee.image %>");
+                            background-size: 100% auto;
+                            background-repeat: no-repeat;
+                            background-position:center 25%;
+                            -webkit-filter: opacity(.4);
+                            filter: opacity(.4);
+                        }
+                        </style>
+
+                    <% end %>
+
+
+
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+
+                    <% for employee in @staff %>
+
+                        <div id="<%= employee.firstname %>Modal" class= "modal fade" >
+                            <div class="modal-dialog">
+                                <div class = "modal-content">
+                                    <div class = "modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                                        </button>
+                                        <h3><%= employee.firstname %> <%= employee.lastname %></h3>
+                                    </div> 
+                                    <div class = "modal-body row">
+                                        <p><%= image_tag employee.image, :class => "col-lg-6" %></p>
+                                        <h4 class="row col-lg-6"><%= employee.title %></h4>
+                                        <p class="row col-lg-6"><%= employee.bio %></p>
+                                        
+                                        <%= button_to "Text #{employee.firstname}", :class => "btn btn-success", :method=> "text", :phone => employee.phone %>                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    <% end %>
+
+
+
+
+            <script>
+
+function myFunction(passed) {
+
+    if ( $("#" + passed).hasClass("hidden")   )
+    {
+        $(".eventsdescription").addClass("hidden");
+        $("#" + passed).toggleClass( "hidden" );
+    }
+    else
+    {
+        $("#" + passed).addClass("hidden");
+    }
+
+
+}
+
+</script>
+                
+                
+                <div class="col col-lg-6">
+
+                <div class="col col-lg-12">
+
+                <div class="container col-lg-12">
+
+    <div class="qa-message-list" id="wallmessages">
+<% @client.search("nyuentrepreneur", lang: "en").take(5).collect do |tweet| %>
+                    <div class="message-item" id="m<%= tweet.user.screen_name %>">
+                        <div class="message-inner">
+                            <div class="message-head clearfix">
+                                <div class="avatar pull-left"><a href="./index.php?qa=user&qa_1=admin"><img src="<%= tweet.user.profile_image_url %>" class="twitterimg"></a></div>
+                                <div class="user-detail">
+                                    <h5 class="handle"><%= tweet.user.screen_name %></h5>
+                                    <div class="post-meta">
+                                        <div class="asker-meta">
+                                            <span class="qa-message-what"></span>
+                                            <span class="qa-message-when">
+                                                <span class="qa-message-when-data"><%= tweet.created_at.to_s.first(10).last(5) %></span>
+                                            </span>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="qa-message-content"><%= tweet.text %></div>
+                    </div></div>
+                    <% end %>
+                </div>
+</div><style type="text/css">.message-item {
+margin-bottom: 25px;
+margin-left: 40px;
+position: relative;
+}
+.message-item .message-inner {
+background: #fff;
+border: 1px solid #ddd;
+border-radius: 3px;
+padding: 10px;
+position: relative;
+}
+.message-item .message-inner:before {
+border-right: 10px solid #ddd;
+border-style: solid;
+border-width: 10px;
+color: rgba(0,0,0,0);
+content: "";
+display: block;
+height: 0;
+position: absolute;
+left: -20px;
+top: 6px;
+width: 0;
+}
+.message-item .message-inner:after {
+border-right: 10px solid #fff;
+border-style: solid;
+border-width: 10px;
+color: rgba(0,0,0,0);
+content: "";
+display: block;
+height: 0;
+position: absolute;
+left: -18px;
+top: 6px;
+width: 0;
+}
+.message-item:before {
+background: #fff;
+border-radius: 2px;
+bottom: -30px;
+box-shadow: 0 0 3px rgba(0,0,0,0.2);
+content: "";
+height: 100%;
+left: -30px;
+position: absolute;
+width: 3px;
+}
+.message-item:after {
+background: #fff;
+border: 2px solid #ccc;
+border-radius: 50%;
+box-shadow: 0 0 5px rgba(0,0,0,0.1);
+content: "";
+height: 15px;
+left: -36px;
+position: absolute;
+top: 10px;
+width: 15px;
+}
+.clearfix:before, .clearfix:after {
+content: " ";
+display: table;
+}
+.message-item .message-head {
+border-bottom: 1px solid #eee;
+margin-bottom: 8px;
+padding-bottom: 8px;
+}
+.message-item .message-head .avatar {
+margin-right: 20px;
+}
+.message-item .message-head .user-detail {
+overflow: hidden;
+}
+.message-item .message-head .user-detail h5 {
+font-size: 16px;
+font-weight: bold;
+margin: 0;
+}
+.message-item .message-head .post-meta {
+float: left;
+padding: 0 15px 0 0;
+}
+.message-item .message-head .post-meta >div {
+color: #333;
+font-weight: bold;
+text-align: right;
+}
+.post-meta > div {
+color: #777;
+font-size: 12px;
+line-height: 22px;
+}
+.message-item .message-head .post-meta >div {
+color: #333;
+font-weight: bold;
+text-align: right;
+}
+.post-meta > div {
+color: #777;
+font-size: 12px;
+line-height: 22px;
+}
+.twitterimg {
+ min-height: 40px;
+ max-height: 40px;
+}</style>
+
+          
+
+
+                    <!-- <h3>Newsletter Signup</h3>                 
+                    <%#= form_for @signup do |f| %>  
+                      <%# if @signup.errors.any? %>  
+                        <div class="error_messages">  
+                          <h2>Form is invalid</h2>  
+                          <ul>  
+                            <%# for message in @signup.errors.full_messages %>  
+                              <li><%#= message %></li>  
+                            <%# end %>  
+                          </ul>  
+                        </div>  
+                      <%# end %>   -->
+                        
+
+                    <%#= f.text_field :email, :class => "col-lg-12" %>  <br />
+                    <%#= f.hidden_field :siteid, :value => @site.id %>
+                    <%#= f.submit "Signup", :class => "btn btn-success btn-lg col-lg-12" %> 
+                    
+                    <%# end %>
+                </div>
+
+                   <!-- <div class="col col-lg-12">
+                    <a class="twitter-timeline" href="https://twitter.com/search?q=nyuentrepreneur" data-widget-id="555242793044824064">Tweets about nyuentrepreneur</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    </div> -->
+
+                </div>
+
+                <div class="col col-lg-6">
+<!--                 <h3>What's happening in the eLab</h3>
+ -->
+                    <% for event in @decoded_array.first(6) %>
+
+
+                    <li class="col col-lg-12 well eventstitle " style="list-style-type: none;" onclick="myFunction(<%= event["id"]%>)">
+                        <div class="col col-lg-8"><a href="<%#= event["url"]%>"><i class="fa fa-fw fa-dashboard"></i><%= event["title"].sub("&amp;","") %></a></div>
+                        
+                        <div class="col col-lg-4 text-right">
+                        <% time = DateTime.parse(event["date_utc"])%>
+                        <% time = time.advance(:hours => -5) %>
+                        <%= time.strftime('%b %d %a %H:%M') %>
+                        </div>
+
+                        <div class="eventsdescription hidden col-lg-12" id="<%= event["id"]%>">
+                        <br />
+                            <%= event["description"].sub("&amp;","").html_safe %>
+                            
+                            <% if event["thumbnail"] != nil %>
+                            <div class="col-lg-12" id="<%= event["id"]%>"><%#= image_tag event["thumbnail"] %></div>
+                            <% end %>
+                        
+                        </div>
+                    </li>
+
+
+                    <% end %>
+                 
+                 </div>
+
+
+                 
+
+                
+
+                
+
+<!--End mc_embed_signup -->
