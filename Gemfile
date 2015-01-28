@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
@@ -32,7 +33,7 @@ gem 'parse_resource', github: 'adelevie/parse_resource'
 gem 'nokogiri'
 gem 'twitter'
 gem 'twilio-ruby'
-
+gem 'sqlite3'
 
 gem 'rails_12factor', group: :production
 

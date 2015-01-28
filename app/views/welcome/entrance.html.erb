@@ -1,0 +1,131 @@
+<style type="text/css">
+    * 
+    {
+        list-style-type: none !important;
+        border-style: none !important;
+    }
+
+    body
+    {
+        background-color: #02ADBA;
+    }
+    .headerlink
+    {
+        color: white;
+    }
+
+    .tab-pane
+    {
+
+    }
+
+    h1
+    {
+        color: #02ADBA;
+        text-align: center;
+    }
+
+    .tag
+    {
+        background-color: lightgreen;
+    }
+</style>
+
+<ul class="nav nav-tabs col col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-2" role="tablist" id="myTab" style='color:white !important;padding-top:5%;padding-bottom:5%;'>
+    <a class="headerlink col col-lg-2 col-md-2" href="#events" aria-controls="events" role="tab" data-toggle="tab">
+        <li role="presentation" class="active fa fa-calendar fa-5x"> Events</li>
+    </a>
+    <a class="headerlink col col-lg-2 col-md-2"  href="#gethelp" aria-controls="gethelp" role="tab" data-toggle="tab">
+        <li role="presentation" class="fa fa-users fa-5x"> Get Help</li>
+    </a>
+    <a class="headerlink col col-lg-2 col-md-2"  href="#aboutus" aria-controls="aboutus" role="tab" data-toggle="tab">
+        <li role="presentation" class="fa fa-question-circle fa-5x"> About Us</li>
+    </a>
+    <a class="headerlink col col-lg-2 col-md-2"  href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
+        <li role="presentation" class="fa fa-envelope-o fa-5x"> Sign Up</li>
+    </a>
+</ul>
+<div class="col col-lg-8 col-lg-offset-2"><%= render 'layouts/messages' %></div>
+<div class='col col-lg-8 col-lg-offset-2'>
+    
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active col-lg-12 well" id="events">
+          <h1>This Week at the Leslie eLab</h1>
+            <% @decoded_array.each do |test| %>
+            <% end %>
+
+
+
+            <%  @decoded_array.each_slice(3) do |slice| %>
+                <div class="row">
+                <% slice.each do |event| -%>
+                    <div class='col-lg-4 col well' style="padding:30px;margin:0px;">
+                        <% debug(event) %>
+                        <h3><%= event["title"] %></h3>
+                        <h4><%= event["date"] %>
+                        <%= event["date_time"] %></h4>
+                        <p><% event["tags"].split(",").each do |tag| %><%= content_tag :span, "#{tag} ", class: "tag" %><% end %></p>
+                        <p><%= event["group"] %></p>
+                        <%= event["description"] %>
+                    </div>
+                <% end %>
+                </div>
+
+            <% end %>
+
+
+       
+      </div>
+      <div role="tabpanel" class="tab-pane col-lg-12 well" id="aboutus">
+          <div class="col-lg-6">
+            <iframe class="col-lg-12"  src="https://www.youtube.com/embed/vqkIzGSS0X4" style="min-height:600px" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="col-lg-6">
+            <h1>The Leslie eLab</h1>
+            <p>The Mark and Debra Leslie Entrepreneurs Lab is a 5,900-square-foot facility in the heart of the Washington Square campus where aspiring NYU entrepreneurs from across all of NYU’s schools and colleges—be they students, faculty, or researchers—can meet to connect, collaborate, and tap into a vast array resources to help develop their ideas and inventions into startup companies.
+
+The Leslie eLab is located on street level at 16 Washington Place at the corner of Greene Street. It features flexibly configured co-working spaces, meeting rooms, an event space, and a fabrication lab to encourage interaction, prototyping, and collaboration so essential in the development of entrepreneurial ideas.</p>
+            <div class="col-lg-12">
+                <div class="col-lg-6">
+                Contact us: 212-992-6070
+                Open Hours: Mon - Fri, 10am-10pm
+                </div>
+                <div class="col-lg-6">
+                Address: 16 Washington Place, 
+                (Washington Place and Greene Street)
+                New York City 10003
+                </div>
+            </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane col-lg-12" id="gethelp">
+            <div class='col col-lg-6'>
+            <%  @staff.each_slice(3) do |slice| %>
+                <div class="row" style="padding-bottom:10px !important;padding-left:10px !important;padding-right:10px !important;padding-top:0px !important;">
+                <% slice.each do |employee| -%>
+                <div class='col col-lg-4' style="margin:0px !important;padding:0px  !important; padding:10px !important;" href="#<%= employee.firstname %>" aria-controls="<%= employee.firstname %>" role="tab" data-toggle="tab">
+                <%= image_tag employee.image, :class => "col-lg-12" %>
+                </div>
+                <% end %>
+                </div>
+            <% end %>
+            </div>
+            <div class="tab-content col-lg-6">
+                    <div role="tabpanel" class="tab-pane active col-lg-12 well active" id="<%= @staff.first.firstname %>">
+                        <h1><%= @staff.first.firstname %></h1>
+                        <h3><%= @staff.first.title %></h3>
+                        <h3><%= @staff.first.bio %></h3>
+                        <%= button_to "Text #{@staff.first.firstname}", {action: "text", phone: @staff.first.phone, remote: true}, {class: 'btn btn-success col-lg-12', style: "min-height:100px;padding-top:20px;"} %>
+                    </div>
+                <% for employee in @staff.drop(1) %>
+                    <div role="tabpanel" class="tab-pane col-lg-12 well" id="<%= employee.firstname %>">
+                        <h1><%= employee.firstname %></h1>
+                        <h3><%= employee.title %></h3>
+                        <h3><%= employee.bio %></h3>
+                        <%= button_to "Text #{employee.firstname}", {action: "text", phone: employee.phone, remote: true}, {class: 'btn btn-success col-lg-12', style: "min-height:100px;padding-top:20px;"} %>
+                    </div>
+                <% end %>
+            </div>
+    </div>
+    </div>
