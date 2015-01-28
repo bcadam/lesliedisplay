@@ -33,7 +33,7 @@ gem 'parse_resource', github: 'adelevie/parse_resource'
 gem 'nokogiri'
 gem 'twitter'
 gem 'twilio-ruby'
-gem 'sqlite3'
+gem 'sqlite3',    group: :development
 
 gem 'rails_12factor', group: :production
 
