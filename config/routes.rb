@@ -59,4 +59,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get '*unmatched_route', :to => 'welcome#entrance'
 end
