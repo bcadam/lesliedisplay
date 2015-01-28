@@ -42,7 +42,7 @@
         <li role="presentation" class="fa fa-question-circle fa-5x"> About Us</li>
     </a>
     <a class="headerlink col col-lg-2 col-md-2"  href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
-        <li role="presentation" class="fa fa-envelope-o fa-5x"> Sign Up</li>
+        <li data-toggle="modal" data-target="#SubscribeModal" role="presentation" class="fa fa-envelope-o fa-5x"> Sign Up</li>
     </a>
 </ul>
 <div class="col col-lg-8 col-lg-offset-2"><%= render 'layouts/messages' %></div>
@@ -99,7 +99,7 @@ The Leslie eLab is located on street level at 16 Washington Place at the corner 
             </div>
         </div>
       </div>
-      <div role="tabpanel" class="tab-pane col-lg-12" id="gethelp">
+        <div role="tabpanel" class="tab-pane col-lg-12" id="gethelp">
             <div class='col col-lg-6'>
             <%  @staff.each_slice(3) do |slice| %>
                 <div class="row" style="padding-bottom:10px !important;padding-left:10px !important;padding-right:10px !important;padding-top:0px !important;">
@@ -127,5 +127,94 @@ The Leslie eLab is located on street level at 16 Washington Place at the corner 
                     </div>
                 <% end %>
             </div>
+        </div>
     </div>
-    </div>
+
+
+<li data-toggle="modal" data-target="#SubscribeModal" class="col col-lg-12">
+    <img src="<%#= employee.image %>" class="col col-lg-12">
+    
+</li>
+
+<div id="SubscribeModal" class= "modal fade">
+    <div class="modal-dialog" style="background-color:#999;">
+        <div class = "modal-content">
+            <div class = "modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                </button> -->
+            </div> 
+            <div class = "modal-body row">
+                <h1 class="">Newsletter Signup</h1>
+                <%= form_for @signup do |f| %>  
+                <%#= f.text_field :email, :style => "background-color:grey;", :class => "col-lg-8 col-lg-offset-2", :style=>"" %>  <br />
+                <%#= f.hidden_field :siteid, :value => @site.id %>
+                <%#= f.submit "Signup", :class => "btn btn-success btn-lg col-lg-8 col-lg-offset-2", :style =>"" %> 
+                                   <%# end %>   
+
+            </div>
+            <div class = "modal-body row">
+                <div class="col-md-6 col-md-offset-3">
+                      <div class="input-group col-lg-12">
+<!--                          <input class="btn btn-lg" name="email" id="email" type="email" placeholder="Your Email" required>
+ -->                         <%= f.text_field :email, :style => "background-color:grey;", :class => "btn btn-lg col-lg-12", :style=>"", :placeholder=>"Your Email" %>
+                            <%= f.submit "Signup", :class => "btn btn-info col-lg-12", :style =>"" %> 
+<!--                             <button class="btn btn-info btn-lg" type="submit">Submit</button>
+ -->                      </div>
+                  <% end %>   
+                </div>
+                <style type="text/css">
+                section {
+    padding: 100px 0;
+    text-align: center;
+}
+select.frecuency {
+    border: none;
+    font-style: italic;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition: -webkit-transform .35s ease-in;
+    transition: -webkit-transform .35s ease-in;
+    border-bottom: none;
+}
+select.frecuency:focus {
+    outline: none;
+    border-bottom: 5px solid #39b3d7;
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+    -webkit-transition: -webkit-transform .35s ease-in;
+    transition: -webkit-transform .35s ease-in;
+}
+.free {
+    text-transform: uppercase;
+}
+.input-group {
+    margin: 20px auto;
+    width: 100%;
+}
+input.btn.btn-lg,
+input.btn.btn-lg:focus {
+    outline: none;
+    width: 60%;
+    height: 60px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+button.btn {
+    width: 40%;
+    height: 60px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.promise {
+    color: #999;
+}
+
+</style>
+            </div>
+        </div>
+</div>
+
+
+
