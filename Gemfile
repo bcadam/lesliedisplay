@@ -39,7 +39,7 @@ gem 'rails_12factor', group: :production
 
 
 group :production do
-  #gem "unicorn"
+  gem "unicorn"
 end
 
 # Use ActiveModel has_secure_password
