@@ -1,37 +1,37 @@
 <style type="text/css">
-    * 
-    {
-        list-style-type: none !important;
-        border-style: none !important;
-    }
+* 
+{
+    list-style-type: none !important;
+    border-style: none !important;
+}
 
-    body
-    {
-        background-color: #02ADBA;
-    }
-    .headerlink
-    {
-        color: white;
-    }
+body
+{
+    background-color: #02ADBA;
+}
+.headerlink
+{
+    color: white;
+}
 
-    .tab-pane
-    {
+.tab-pane
+{
 
-    }
+}
 
-    h1
-    {
-        color: #02ADBA;
-        text-align: center;
-    }
-
-    .tag
-    {
-        background-color: lightgreen;
-    }
-     section {
-    padding: 100px 0;
+h1
+{
+    color: #02ADBA;
     text-align: center;
+}
+
+.tag
+{
+    background-color: lightgreen;
+}
+ section {
+padding: 100px 0;
+text-align: center;
 }
 select.frecuency {
     border: none;
@@ -126,7 +126,7 @@ button.btn {
                 <% slice.each do |event| -%>
                     <div class='col-lg-4 col' style="padding:30px;margin:0px;">
                         <% debug(event) %>
-                        <h3><%= event["title"] %></h3>
+                        <h2><%= event["title"] %></h2>
                         <h4><%= event["date"] + ":" %>
                         <%= event["date_time"] %></h4>
 
@@ -202,7 +202,7 @@ button.btn {
                     <h1><%= employee.firstname %></h1>
                     <h3><%= employee.title %></h2>
                     <p><%= employee.bio %></p>
-                    <%= button_to "Text #{employee.firstname}", {action: "text", phone: employee.phone, remote: true}, {class: 'btn btn-success col-lg-12', style: "min-height:100px;padding-top:20px;"} %>
+                    <%= button_to "Text #{employee.firstname}", {action: "text", phone: employee.phone, remote: true}, {class: 'btn btn-success col-lg-12', style: "font-size:20pt;min-height:100px;padding-top:20px;"} %>
                 </div>
             <% end %>
         </div>
@@ -211,7 +211,7 @@ button.btn {
 
 
 <div id="SubscribeModal" class= "modal fade">
-    <div class="modal-dialog" style="background-color:#999;">
+    <div class="modal-dialog" style="background-color:#999;margin-top:20%;">
         <div class = "modal-content col-lg-12">
             <div class = "modal-header">
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
