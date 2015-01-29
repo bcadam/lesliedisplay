@@ -37,10 +37,9 @@ gem 'sqlite3',    group: :development
 
 gem 'rails_12factor', group: :production
 
- gem "unicorn"
- 
+
 group :production do
-  gem "unicorn"
+  #gem "unicorn"
 end
 
 # Use ActiveModel has_secure_password
