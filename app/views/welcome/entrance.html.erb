@@ -96,18 +96,18 @@ button.btn {
 </style>
 
 <!-- top icons -->
-<ul class="nav nav-tabs col col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12 col-lg-offset-2" role="tablist" id="myTab" style='color:white !important;padding-top:5%;padding-bottom:5%;z-index:5;background-color: #02ADBA;'>
-    <a class="headerlink col col-lg-2 col-md-2" href="#events" aria-controls="events" role="tab" data-toggle="tab">
-        <li role="presentation" class="active fa fa-calendar fa-5x"> Events</li>
+<ul class="nav nav-tabs col col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12 col-lg-offset-0" role="tablist" id="myTab" style='color:white !important;padding-top:5%;padding-bottom:5%;z-index:5;background-color: #02ADBA;'>
+    <a class="headerlink col col-lg-2 col-md-2 col-lg-offset-2 active" href="#events" aria-controls="events" role="tab" data-toggle="tab" style="text-align:center;">
+        <li role="presentation" class="active fa fa-calendar fa-5x" style="text-align:center;"><br /><div style="font-size:15px;padding-top:10px;">Events</div></li>
     </a>
-    <a class="headerlink col col-lg-2 col-md-2"  href="#gethelp" aria-controls="gethelp" role="tab" data-toggle="tab">
-        <li role="presentation" class="fa fa-users fa-5x"> Get Help</li>
+    <a class="headerlink col col-lg-2 col-md-2"  href="#gethelp" aria-controls="gethelp" role="tab" data-toggle="tab" style="text-align:center;">
+        <li role="presentation" class="fa fa-users fa-5x" style="text-align:center;"><br /><div style="font-size:15px;padding-top:10px;">Get Help</div></li>
     </a>
-    <a class="headerlink col col-lg-2 col-md-2"  href="#aboutus" aria-controls="aboutus" role="tab" data-toggle="tab">
-        <li role="presentation" class="fa fa-question-circle fa-5x"> About Us</li>
+    <a class="headerlink col col-lg-2 col-md-2"  href="#aboutus" aria-controls="aboutus" role="tab" data-toggle="tab" style="text-align:center;">
+        <li role="presentation" class="fa fa-question-circle fa-5x" style="text-align:center;"><br /><div style="font-size:15px;padding-top:10px;">About Us</div></li>
     </a>
-    <a class="headerlink col col-lg-2 col-md-2"  href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
-        <li data-toggle="modal" data-target="#SubscribeModal" role="presentation" class="fa fa-envelope-o fa-5x"> Sign Up</li>
+    <a class="headerlink col col-lg-2 col-md-2"  href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="text-align:center;">
+        <li data-toggle="modal" data-target="#SubscribeModal" role="presentation" class="fa fa-envelope-o fa-5x" style="text-align:center;"><br /><div style="font-size:15px;padding-top:10px;">Sign Up</div></li>
     </a>
 </ul>
 
@@ -116,23 +116,35 @@ button.btn {
 
 
 <!-- tab of content -->
-<div class='col col-lg-8 col-lg-offset-2'>
-    
+<div class='col col-lg-10 col-lg-offset-1'>
 
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active col-lg-12 well" id="events">
-        <h1>This Week at the Leslie eLab</h1>
+        <h1>Next Up at the Leslie eLab</h1>
         <%  @decoded_array.each_slice(3) do |slice| %>
             <div class="row">
                 <% slice.each do |event| -%>
-                    <div class='col-lg-4 col well' style="padding:30px;margin:0px;">
+                    <div class='col-lg-4 col' style="padding:30px;margin:0px;">
                         <% debug(event) %>
                         <h3><%= event["title"] %></h3>
-                        <h4><%= event["date"] %>
+                        <h4><%= event["date"] + ":" %>
                         <%= event["date_time"] %></h4>
-                        <p><% event["tags"].split(",").each do |tag| %><%= content_tag :span, "#{tag} ", class: "tag" %><% end %></p>
+
+                        <% @newArray = event["tags"].split(",") %>
+                        <% @newArray = @newArray - ["inspire"] %>
+                        <% @newArray = @newArray - ["educate"] %>
+                        <% @newArray = @newArray - ["connect"] %>
+                        <% @newArray = @newArray - ["accelerate"] %>
+                        <% @newArray = @newArray - ["fund"] %>
+                        <% @newArray = @newArray - ["elab"] %>
+                        <% @newArray = @newArray - ["undergrad"] %>
+                        <% @newArray = @newArray - ["graduate"] %>
+                        <% @newArray = @newArray - ["faculty"] %>
+                        <% @newArray = @newArray - ["featured"] %>
+                        <p><% @newArray.each do |tag| %><%= content_tag :span, "#{tag} ", class: "tag" %><% end %></p>
                         <p><%= event["group"] %></p>
-                        <%= event["description"] %>
+                        <%= event["description"] #.first(200) 
+                        %>
                     </div>
                 <% end %>
             </div>
@@ -142,7 +154,7 @@ button.btn {
     <div role="tabpanel" class="tab-pane col-lg-12 well" id="aboutus">
         <div class="col-lg-6">
             <div class="vid">
-                <iframe width="560" height="315" src="//www.youtube.com/embed/vqkIzGSS0X4" allowfullscreen=""></iframe>
+                <iframe width="560" height="315" src="//www.youtube.com/embed/vqkIzGSS0X4?list=NYUEIMedia" frameborder="0"></iframe>
             </div>
         </div>
         <div class="col-lg-6">
@@ -152,14 +164,15 @@ button.btn {
             The Leslie eLab is located on street level at 16 Washington Place at the corner of Greene Street. It features flexibly configured co-working spaces, meeting rooms, an event space, and a fabrication lab to encourage interaction, prototyping, and collaboration so essential in the development of entrepreneurial ideas.</p>
         
             <div class="col-lg-12">
-                <div class="col-lg-6">
-                Contact us: 212-992-6070
-                Open Hours: Mon - Fri, 10am-10pm
+                <div class="col-lg-12">
+                    <div style="float:right;">212-992-6070</div>
+                    <div style="font-weight:bold;">Contact us:</div>
+                    <div style="float:right;">Mon - Fri, 10am-10pm</div>
+                    <div style="font-weight:bold;">Open Hours:</div>
                 </div>
-                <div class="col-lg-6">
-                Address: 16 Washington Place, 
-                (Washington Place and Greene Street)
-                New York City 10003
+                <div class="col-lg-12">
+                    <div style="float:right;">16 Washington Place</div>
+                    <div style="font-weight:bold;">Address:</div>
                 </div>
             </div>
         </div>
@@ -171,7 +184,7 @@ button.btn {
                 <div class="row" style="padding-bottom:10px !important;padding-left:10px !important;padding-right:10px !important;padding-top:0px !important;">
                     <% slice.each do |employee| -%>
                         <div class='col col-lg-4' style="margin:0px !important;padding:0px  !important; padding:10px !important;" href="#<%= employee.firstname %>" aria-controls="<%= employee.firstname %>" role="tab" data-toggle="tab">
-                        <%= image_tag employee.image, :class => "col-lg-12" %>
+                        <%= image_tag employee.image, :class => "col-lg-12", :style => "" %>
                         </div>
                     <% end %>
                 </div>
@@ -181,14 +194,14 @@ button.btn {
                 <div role="tabpanel" class="tab-pane active col-lg-12 well active" id="<%= @staff.first.firstname %>">
                     <h1><%= @staff.first.firstname %></h1>
                     <h3><%= @staff.first.title %></h3>
-                    <h3><%= @staff.first.bio %></h3>
+                    <p><%= @staff.first.bio %></p>
                     <%= button_to "Text #{@staff.first.firstname}", {action: "text", phone: @staff.first.phone, remote: true}, {class: 'btn btn-success col-lg-12', style: "min-height:100px;padding-top:20px;"} %>
                 </div>
             <% for employee in @staff.drop(1) %>
                 <div role="tabpanel" class="tab-pane col-lg-12 well" id="<%= employee.firstname %>">
                     <h1><%= employee.firstname %></h1>
-                    <h3><%= employee.title %></h3>
-                    <h3><%= employee.bio %></h3>
+                    <h3><%= employee.title %></h2>
+                    <p><%= employee.bio %></p>
                     <%= button_to "Text #{employee.firstname}", {action: "text", phone: employee.phone, remote: true}, {class: 'btn btn-success col-lg-12', style: "min-height:100px;padding-top:20px;"} %>
                 </div>
             <% end %>
@@ -199,27 +212,28 @@ button.btn {
 
 <div id="SubscribeModal" class= "modal fade">
     <div class="modal-dialog" style="background-color:#999;">
-        <div class = "modal-content">
+        <div class = "modal-content col-lg-12">
             <div class = "modal-header">
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
                 </button> -->
             </div> 
-            <div class = "modal-body row">
-                <h1 class="">Newsletter Signup</h1>
-                <%= form_for @signup do |f| %>  
+            <div class = "modal-body">
+                <h1 class="" style="">Newsletter Signup</h1>
+                <div class="input-group col-lg-12">
+                        <%= form_for @signup do |f| %>  
+                        <%= f.text_field :email, :style => "background-color:grey;padding-bottom:10px !important;", :class => "btn col-lg-12 well", :style=>"", :placeholder=>"Your Email", :id =>"" %>
+                        <%= f.submit "Signup", :class => "btn btn-success col-lg-12", :style =>"" %> 
+                        <input id="keyboard" type="text">
+                        <% end %> 
+                    </div> 
             </div>
-            <div class = "modal-body row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="input-group col-lg-12">
-                    <%= f.text_field :email, :style => "background-color:grey;", :class => "btn btn-lg col-lg-12", :style=>"", :placeholder=>"Your Email" %>
-                    <%= f.submit "Signup", :class => "btn btn-info col-lg-12", :style =>"" %> 
-                    </div>
-                  <% end %>   
-                </div>  
+            <div class = "modal-body"> 
             </div>
         </div>
     </div>
 </div>
+
+
 
 
 
